@@ -22,7 +22,7 @@ public class Backtracking {
 
     public Solucion secuencias() {
         Estado estado = new Estado();
-        backtracking2(estado);
+        backtracking(estado);
         return this.solucion;
     }
     /*
@@ -33,8 +33,6 @@ public class Backtracking {
 
 
     */
-
-
 
 
     private boolean backtracking(Estado estado) {
@@ -49,41 +47,46 @@ public class Backtracking {
             if (solucion.getPuestasEnMarcha() == null || estado.getPuestasEnMarcha() < solucion.getPuestasEnMarcha()) {
                 System.out.println("\nEncontramos solucion!" + estado.getSecuencia() + " Puestas en marcha " + estado.getPuestasEnMarcha() + "\n");
                 solucion.getSoluciones().clear();
-                solucion.getSoluciones().add(new ArrayList<>(estado.getSecuencia()));
+                solucion.getSoluciones().addAll(new ArrayList<>(estado.getSecuencia()));
                 solucion.setPuestasEnMarcha(estado.getPuestasEnMarcha());
-                return true;
+                return true; // cortás porque ya encontraste la mejor
             }
         } else {
             for (Maquina maquina : maquinas) {
-                    if (poda(estado, maquina)) {
+                int nuevasPiezas = estado.getPiezasProducidas() + maquina.getCantPiezasMax();
+                int nuevasPuestas = estado.getPuestasEnMarcha() + 1;
 
 
-                        //pongo las piezas que produce y el nombre de la maquina en la secuencia del estado
-                        estado.getSecuencia().add("" + maquina.getNombre() + " " + maquina.getCantPiezasMax());
+                if (nuevasPiezas <= piezasAProducir &&
+                        (solucion.getPuestasEnMarcha() == null || nuevasPuestas < solucion.getPuestasEnMarcha())) {
 
 
-                        estado.sumarPiezasProducidas(maquina.getCantPiezasMax());
-                        estado.setPuestasEnMarcha(estado.getPuestasEnMarcha() + 1);
+                    //pongo las piezas que produce y el nombre de la maquina en la secuencia del estado
+                    estado.getSecuencia().add(maquina);
 
-                        System.out.println("Estado generado: " + estado.getSecuencia() + " | Piezas producidas: " + estado.getPiezasProducidas() + " | Puestas en marcha: " + estado.getPuestasEnMarcha());
-                        boolean mejorSolucion = backtracking(estado);
-                        if (mejorSolucion) {
-                            return true;
-                        }
 
-                        estado.getSecuencia().remove(estado.getSecuencia().size() - 1);
+                    estado.sumarPiezasProducidas(maquina.getCantPiezasMax());
+                    estado.setPuestasEnMarcha(estado.getPuestasEnMarcha() + 1);
 
-                        estado.restarPiezasProducidas(maquina.getCantPiezasMax());
-                        estado.setPuestasEnMarcha(estado.getPuestasEnMarcha() - 1);
+                    System.out.println("Estado generado: " + estado.getSecuencia() + " | Piezas producidas: " + estado.getPiezasProducidas() + " | Puestas en marcha: " + estado.getPuestasEnMarcha());
+                    boolean mejorSolucion = backtracking(estado);
+                    if (mejorSolucion) {
+                        return true;
                     }
+
+                    estado.getSecuencia().remove(estado.getSecuencia().size() - 1);
+
+                    estado.restarPiezasProducidas(maquina.getCantPiezasMax());
+                    estado.setPuestasEnMarcha(estado.getPuestasEnMarcha() - 1);
                 }
+            }
 
         }
-
         return false;
 
-
     }
+
+
 
     private void backtracking2(Estado estado) {
         estadosGenerados++;  // cada vez que entras a backtracking, contás un estado
@@ -97,23 +100,29 @@ public class Backtracking {
             if (solucion.getPuestasEnMarcha() == null || estado.getPuestasEnMarcha() < solucion.getPuestasEnMarcha()) {
                 System.out.println("\nEncontramos solucion!" + estado.getSecuencia() + " Puestas en marcha " + estado.getPuestasEnMarcha() + "\n");
                 solucion.getSoluciones().clear();
-                solucion.getSoluciones().add(new ArrayList<>(estado.getSecuencia()));
+                solucion.getSoluciones().addAll(new ArrayList<>(estado.getSecuencia()));
                 solucion.setPuestasEnMarcha(estado.getPuestasEnMarcha());
+
             }
         } else {
             for (Maquina maquina : maquinas) {
-                if (poda(estado, maquina)) {
+                int nuevasPiezas = estado.getPiezasProducidas() + maquina.getCantPiezasMax();
+                int nuevasPuestas = estado.getPuestasEnMarcha() + 1;
+
+
+                if (nuevasPiezas <= piezasAProducir &&
+                        (solucion.getPuestasEnMarcha() == null || nuevasPuestas < solucion.getPuestasEnMarcha())) {
 
 
                     //pongo las piezas que produce y el nombre de la maquina en la secuencia del estado
-                    estado.getSecuencia().add("" + maquina.getNombre() + " " + maquina.getCantPiezasMax());
+                    estado.getSecuencia().add(maquina);
 
 
                     estado.sumarPiezasProducidas(maquina.getCantPiezasMax());
                     estado.setPuestasEnMarcha(estado.getPuestasEnMarcha() + 1);
 
                     System.out.println("Estado generado: " + estado.getSecuencia() + " | Piezas producidas: " + estado.getPiezasProducidas() + " | Puestas en marcha: " + estado.getPuestasEnMarcha());
-                    backtracking(estado);
+                   backtracking2(estado);
 
 
                     estado.getSecuencia().remove(estado.getSecuencia().size() - 1);
@@ -125,19 +134,8 @@ public class Backtracking {
 
         }
 
-
-
-
     }
 
-    public boolean poda(Estado estado, Maquina maquina) {
-        int nuevasPiezas = estado.getPiezasProducidas() + maquina.getCantPiezasMax();
-        int nuevaPuestaEnMarcha = estado.getPuestasEnMarcha() ;
-
-
-        return nuevasPiezas <= piezasAProducir &&
-                (solucion.getPuestasEnMarcha() == null || nuevaPuestaEnMarcha <= solucion.getPuestasEnMarcha() && estado.getSecuencia().size()<= solucion.s);
-    }
 
     public long getEstadosGenerados() {
         return estadosGenerados;

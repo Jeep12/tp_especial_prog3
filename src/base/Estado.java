@@ -6,10 +6,10 @@ import java.util.List;
 public class Estado {
 
     Integer piezasProducidas;
-    List<String> secuencia = new ArrayList<>();
+    List<Maquina> secuencia = new ArrayList<>();
     Integer puestasEnMarcha;
 
-    public Estado( ) {
+    public Estado() {
         this.secuencia = new ArrayList<>();
         this.puestasEnMarcha = 0;  // arranca en cero acá
         this.piezasProducidas = 0;
@@ -23,7 +23,6 @@ public class Estado {
         this.piezasProducidas = piezasProducidas;
     }
 
-
     public Integer getPuestasEnMarcha() {
         return puestasEnMarcha;
     }
@@ -32,17 +31,18 @@ public class Estado {
         this.puestasEnMarcha = puestasEnMarcha;
     }
 
-    public List<String> getSecuencia() {
+    public List<Maquina> getSecuencia() {
         return secuencia;
     }
 
-    public void setSecuencia(List<String> secuencia) {
+    public void setSecuencia(List<Maquina> secuencia) {
         this.secuencia = secuencia;
     }
 
     public void sumarPiezasProducidas(Integer elem) {
         this.piezasProducidas += elem;
     }
+
     public void restarPiezasProducidas(Integer elem) {
         this.piezasProducidas -= elem;
     }
