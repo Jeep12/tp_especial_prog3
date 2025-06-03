@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class MainBacktraking {
     public static void main(String[] args) {
-
+        //hola que tal primer push
         LectorConfigMaquinas lector = new LectorConfigMaquinas();
         lector.leerArchivo("config_maquinas");
 
