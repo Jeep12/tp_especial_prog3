@@ -8,6 +8,11 @@
  */
 public class MainGreedy {
 //entonces aca?
-    //while (piezasQfaltan >0 entonces que?
+    //ordeno las maquinas de mayor a menor
+    //while (piezasQfaltan >0 entonces que? y si hay candidatos todavia en la lista????
+    //selecciono la primera maquina (la de 5000)
+    //si puedo y no esta ocupada, la uso, sino uso la siguiente... si la primera no tiene nada siempre voy a usarla
+    //aca resto la cantidad de piezasQfaltan al total como si fuese billetes (podria hacerlo en otro metodo)
+    //si no se puede mas, entonces chau, finalizo el while... capaz con una condicion booleana?
 }
 
