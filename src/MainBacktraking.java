@@ -16,17 +16,17 @@ public class MainBacktraking {
         }
 
 
-            System.out.println("\nSolucion");
+        System.out.println("\nSolucion");
 
-            Backtracking bt = new Backtracking(lector.getMaquinas(), lector.getPiezasTotales());
+        Backtracking bt = new Backtracking(lector.getMaquinas(), lector.getPiezasTotales());
 
-            long inicio = System.nanoTime();
-            System.out.println(bt.secuencias());
-            long fin = System.nanoTime();
+        long inicio = System.nanoTime();
+        System.out.println(bt.secuencias());
+        long fin = System.nanoTime();
 
-            System.out.println("Piezas preestablecidas a fabricar: " + lector.getPiezasTotales());
-            System.out.println("Estados generados: "+ bt.getEstadosGenerados());
-            System.out.println("Tiempo de ejecución: " + (fin - inicio) / 1_000_000.0 + " ms");
+        System.out.println("Piezas preestablecidas a fabricar: " + lector.getPiezasTotales());
+        System.out.println("Estados generados: " + bt.getEstadosGenerados());
+        System.out.println("Tiempo de ejecución: " + (fin - inicio) / 1_000_000.0 + " ms");
 
     }
 }
