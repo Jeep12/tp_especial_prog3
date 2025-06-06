@@ -1,3 +1,12 @@
+import base.Greedy;
+import base.LectorConfigMaquinas;
+import base.Maquina;
+import base.Solucion;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /*
  * greedy:
  * la idea es agarrar la maquina q mas piezas haga sin pasarse de lo q falta
@@ -7,12 +16,26 @@
  * y para medir el costo cuento cuantas veces mire una maquina pa ver si me servia
  */
 public class MainGreedy {
-//entonces aca?
-    //ordeno las maquinas de mayor a menor
-    //while (piezasQfaltan >0 entonces que? y si hay candidatos todavia en la lista????
-    //selecciono la primera maquina (la de 5000)
-    //si puedo y no esta ocupada, la uso, sino uso la siguiente... si la primera no tiene nada siempre voy a usarla
-    //aca resto la cantidad de piezasQfaltan al total como si fuese billetes (podria hacerlo en otro metodo)
-    //si no se puede mas, entonces chau, finalizo el while... capaz con una condicion booleana?
+    public static void main(String[] args) {
+        // leo el archivo con las maquinas y las piezas a producir
+        LectorConfigMaquinas lector = new LectorConfigMaquinas();
+        lector.leerArchivo("config_maquinas");
+
+        System.out.println("maquinas disponibles:");
+        for (Maquina m : lector.getMaquinas()) {
+            System.out.println("maquina: " + m.getNombre() + ", produce: " + m.getCantPiezasMax());
+        }
+
+        System.out.println("\nsolucion greedy:");
+
+        Greedy greedy = new Greedy(lector.getMaquinas(), 0); // piezas a producir se setea después
+        long inicio = System.nanoTime();
+        Solucion solucion = greedy.fabricaGreedy(lector.getMaquinas(), lector.getPiezasTotales());
+        long fin = System.nanoTime();
+
+        System.out.println(solucion);
+        System.out.println("piezas a producir: " + lector.getPiezasTotales());
+        System.out.println("tiempo ejecucion: " + (fin - inicio) / 1_000_000.0 + " ms");
+    }
 }
 

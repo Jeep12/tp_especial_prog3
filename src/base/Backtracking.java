@@ -6,7 +6,6 @@ import java.util.List;
 public class Backtracking {
 
     Integer piezasAProducir;
-
     List<Maquina> maquinas;
     long estadosGenerados;  // contador
 
