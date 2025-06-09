@@ -28,7 +28,7 @@ public class MainGreedy {
 
         System.out.println("\nsolucion greedy:");
 
-        Greedy greedy = new Greedy(lector.getMaquinas(), 0); // piezas a producir se setea después
+        Greedy greedy = new Greedy(lector.getMaquinas(), 0); // piezas a producir se setea despues
         long inicio = System.nanoTime();
         Solucion solucion = greedy.fabricaGreedy(lector.getMaquinas(), lector.getPiezasTotales());
         long fin = System.nanoTime();

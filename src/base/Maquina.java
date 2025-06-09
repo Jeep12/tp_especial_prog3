@@ -52,7 +52,7 @@ public class Maquina implements Comparable<Maquina> {
     }
     @Override
     public int compareTo(Maquina o) {
-        //ordeno de mayor capacidad de piezas, a menor capacidad
+        //ordeno de mayor a menor capacidad
         return o.cantPiezasMax-this.cantPiezasMax;
     }
 }
