@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class MainBacktraking {
     public static void main(String[] args) {
-        //probando mi rama
         LectorConfigMaquinas lector = new LectorConfigMaquinas();
         lector.leerArchivo("config_maquinas");
 
