@@ -6,7 +6,6 @@ import java.util.List;
 public class Backtracking {
 
     Integer piezasAProducir;
-
     List<Maquina> maquinas;
     long estadosGenerados;  // contador
 
@@ -49,7 +48,7 @@ public class Backtracking {
                 solucion.getSoluciones().clear();
                 solucion.getSoluciones().addAll(new ArrayList<>(estado.getSecuencia()));
                 solucion.setPuestasEnMarcha(estado.getPuestasEnMarcha());
-                return true; // cortás porque ya encontraste la mejor
+                return false; // cortás porque ya encontraste la mejor
             }
         } else {
             for (Maquina maquina : maquinas) {

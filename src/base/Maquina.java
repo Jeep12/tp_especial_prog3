@@ -1,10 +1,11 @@
 package base;
 
-public class Maquina {
+public class Maquina implements Comparable<Maquina> {
+
 
     private String nombre;
 
-    private Integer cantPiezasMax;
+    private Integer cantPiezasMax; // un nombre mejor no seria capacidadMaxima? es obvio q son piezas
 
     private Boolean encendida;
 
@@ -48,5 +49,10 @@ public class Maquina {
                 "" + nombre + " " +
                 "" + cantPiezasMax +
                 '}';
+    }
+    @Override
+    public int compareTo(Maquina o) {
+        //ordeno de mayor a menor capacidad
+        return o.cantPiezasMax-this.cantPiezasMax;
     }
 }
