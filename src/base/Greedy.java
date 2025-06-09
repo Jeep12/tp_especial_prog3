@@ -29,6 +29,7 @@ public class Greedy {
     public List<Maquina> ordenarMaquinas() {
         ArrayList<Maquina> arr = new ArrayList<Maquina>(maquinas);
         Collections.sort(arr);
+        System.out.println(arr.toString()); //BORRAR UNA VEZ TERMINADO EL CODIGO
         return arr;
     }
 
@@ -39,7 +40,11 @@ public class Greedy {
         greedy(candidatos,piezasAproducir,solucion);
         return solucion;
     }
-
+    /*LA SOLUCION GREEDY CONSISTE EN QUE SI LA MAQUINA PUEDE REPETIRSE DEBE USARSE ASI MISMA HASTA Q SOLO LE QUEDEN POCOS USOS
+    RECIEN AHI PASAR A LA SIGUIENTE, SI QUIERO PRODUCIR 1 PIEZA Y HAY UNA MAQUINA DE 5000 VA A AGARRAR ESA MAQUINA, AL IGUAL Q SI HAY
+    10500 PIEZAS VA A AGARRAR 3 VECES LA MAQUINA CON 5000 PIEZAS DE PRODUCCION, EN LA MAYORIA DE LOS CASOS VA A DAR LA MEJOR SOLUCION
+    EN OTROS VA A SER INEFICIENTE PORQ VA A USAR UNA MAQUINA CON DEMASIADA CAPACIDAD PARA PRODUCIR POCAS PIEZAS
+    * */
     private void greedy(List<Maquina> candidatos, int piezasAproducir, Solucion solucion) {
         // mientras existan todavia candidatos y las piezas a producir sean mayor a 0 probar
         int contador = 0;
@@ -48,20 +53,16 @@ public class Greedy {
             //osea la que tiene mayor capacidad
             Maquina maquina = candidatos.get(0);
             int capacidadMaxima =  maquina.getCantPiezasMax();
-            while(piezasAproducir<=capacidadMaxima && piezasAproducir>0){
+            while (capacidadMaxima <= piezasAproducir) {
                 solucion.getSoluciones().add(maquina);
                 contador++;
-                piezasAproducir-=capacidadMaxima;
+                piezasAproducir -= capacidadMaxima;
             }
             candidatos.remove(0);
+            }
+        solucion.setPuestasEnMarcha(contador);
+
         }
 
-        if (piezasAproducir <= 0) {
-            //si ya se produjeron las piezas entonces seteo las puestas en marcha y agrego la solucion
-            solucion.setPuestasEnMarcha(contador);
-        } else {
-            //no se encontro solucion desde greedy
-            solucion.setPuestasEnMarcha(null);
-        }
+
     }
-}
