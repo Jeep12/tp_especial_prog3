@@ -19,10 +19,6 @@ public class Estado {
         return piezasProducidas;
     }
 
-    public void setPiezasProducidas(Integer piezasProducidas) {
-        this.piezasProducidas = piezasProducidas;
-    }
-
     public Integer getPuestasEnMarcha() {
         return puestasEnMarcha;
     }
@@ -33,10 +29,6 @@ public class Estado {
 
     public List<Maquina> getSecuencia() {
         return secuencia;
-    }
-
-    public void setSecuencia(List<Maquina> secuencia) {
-        this.secuencia = secuencia;
     }
 
     public void sumarPiezasProducidas(Integer elem) {

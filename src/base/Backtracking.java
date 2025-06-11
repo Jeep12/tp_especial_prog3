@@ -56,7 +56,7 @@ public class Backtracking {
             if (solucion == null || estado.getPuestasEnMarcha() < solucion.getPuestasEnMarcha()) {
                 //Si no hay una solucion creamos una ya
                 if (solucion == null) {
-                    solucion = new Solucion();
+                    solucion = new Solucion(); //solamente para la primera instancia para crear solucion
                 }
                 //Sino vamos llevando la mejor en la clase solucion con las pustas en marchas
                 solucion.getSoluciones().clear();

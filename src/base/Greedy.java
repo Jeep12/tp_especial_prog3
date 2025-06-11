@@ -1,30 +1,26 @@
 package base;
-import base.Maquina;
-import base.Solucion;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Greedy {
-    private List<Maquina> maquinas;
-    private Integer piezasAproducir;
+    private final List<Maquina> maquinas;
 
-    public Greedy(List<Maquina> maquinas, Integer piezasAproducir) {
+    public Greedy(List<Maquina> maquinas) {
         this.maquinas = maquinas;
-        this.piezasAproducir = 0;
         //las piezas a producir deberian invocarse en el metodo porq al principio no se dio ninguna orden
     }
     //ordeno de mayor a menor
     public List<Maquina> ordenarMaquinas() {
-        ArrayList<Maquina> arr = new ArrayList<Maquina>(maquinas);
+        ArrayList<Maquina> arr = new ArrayList<>(maquinas);
         Collections.sort(arr);
         return arr;
     }
 
-    public Solucion fabricaGreedy(List<Maquina> maquinas, int piezasAproducir) {
+    public Solucion fabricaGreedy( int piezasAproducir) {
         List<Maquina> candidatos = ordenarMaquinas();//ordeno la lista para aplicar greedy de manera eficiente
-        this.piezasAproducir = piezasAproducir;
+
         Solucion solucion=new Solucion();
         greedy(candidatos,piezasAproducir,solucion);
         return solucion;

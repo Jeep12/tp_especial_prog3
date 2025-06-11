@@ -1,5 +1,5 @@
 
-Contexto
+Contexto:
 En una fábrica de construcción de autopartes se dispone de un conjunto de máquinas capaces de
 producir un número determinado de piezas.
 
@@ -10,12 +10,20 @@ Por una cuestión de ahorro energético sólo una máquina puede estar funcionan
 lado, no hay restricciones respecto a volver a poner en funcionamiento una máquina que ya ha estado
 en funcionamiento anteriormente.
 
-Entrada al problema
+Entrada al problema:
 Piezas totales a producir
 Lista de maquinas
 
-Salida del problema
+Salida del problema:
 List<Maquina> secuenciaPuestaEnMarcha minima;(con respecto a la cantidad de puestas en marcha)
 
-Entidades
+Entidades:
 Maquina
+
+Config_maquinas:
+12 //Cantidad de piezas a producir
+M1,7//Maquinas disponibles para crear las piezas
+M2,3
+M3,4
+M4,1
+M5,5000
