@@ -32,8 +32,8 @@ public class Backtracking {
     Si en ese punto usamos menos puestas en marcha que la mejor solución guardada, actualizamos la solución.
 
     Poda: evitamos generar un estado nuevo si:
-    - ya nos pasamos con las piezas
-    - o si el nuevo estado tiene más puestas en marcha que la mejor solución hasta ahora
+    ya nos pasamos con las piezas
+     o si el nuevo estado tiene más puestas en marcha que la mejor solución hasta ahora
 
     Así evitamos recorrer caminos que no sirven.
     */
@@ -54,11 +54,11 @@ public class Backtracking {
             //si las puestas en marcha es menor a las que llevamos en la solucion o solucion == null para que entre la primera vez.
             //agregamos actualizamos la mejor solucion o la creamos
             if (solucion == null || estado.getPuestasEnMarcha() < solucion.getPuestasEnMarcha()) {
-                //Si no hay una solucion creamos una ya
+                //Si no hay una solucion creamos una
                 if (solucion == null) {
-                    solucion = new Solucion(); //solamente para la primera instancia para crear solucion
+                    solucion = new Solucion();
                 }
-                //Sino vamos llevando la mejor en la clase solucion con las pustas en marchas
+                //Si ya hay una solucion vamos llevando la mejor  con las puestas en marchas y la secuencia
                 solucion.getSoluciones().clear();
                 solucion.getSoluciones().addAll(new ArrayList<>(estado.getSecuencia()));
                 solucion.setPuestasEnMarcha(estado.getPuestasEnMarcha());
@@ -69,6 +69,7 @@ public class Backtracking {
 
         //Generacion hijos
         for (Maquina maquina : maquinas) {
+
             estado.getSecuencia().add(maquina);
             estado.sumarPiezasProducidas(maquina.getCantPiezasMax());
             estado.setPuestasEnMarcha(estado.getPuestasEnMarcha() + 1);
